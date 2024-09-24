@@ -1,0 +1,88 @@
+h1{
+    text-align: center;
+    margin: 12px;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr  ;
+    
+
+}
+
+.card-container{
+    background-color: rgb(223, 218, 218);
+    
+    
+    margin: 8px;
+    padding: 5px;
+    font-size: 14px;
+    
+    border-radius: 4px;
+    box-shadow: 0 3px 5px rgb(95, 94, 94);
+    
+    
+}
+
+
+
+.card-button{
+    color: white;
+    background-color: rgb(69, 69, 69);
+    margin: 10px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid black;
+    
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgb(95, 94, 94);
+}
+.card-button:hover{
+    background-color: rgb(10, 101, 176);
+    width: 27.5%;
+    cursor: pointer;
+}
+
+.img-card{
+    width: 300px;  
+    height: 250px; 
+    object-fit: contain;
+    
+}
+
+
+.card-name{
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+    
+    }
+
+    .card-button:hover{
+        background-color: rgb(10, 101, 176);
+        width: 26.1%;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 768px) {
+    .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        
+    
+    }
+    .card-button:hover{
+        background-color: rgb(10, 101, 176);
+        width: 19.7%;
+        cursor: pointer;
+    }
+    
+}
+

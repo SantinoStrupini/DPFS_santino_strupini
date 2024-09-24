@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/*HEADER*/
+
+nav{
+    background-color: rgb(34, 34, 34);
+    padding: 20px;
+    color: white;
+}
+
+
+
+.nav-list{
+    
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: end;
+    
+}
+.nav-item{
+    position: relative;
+    margin-right: 20px;
+}
+
+.nav-item a{
+    position: relative;
+    margin-right: 20px;
+}
+
+.logo{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 10px;
+    margin: -10px;
+    
+    
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 14px;
+}
+
+
+li :hover{
+    
+    color: rgb(33, 150, 243);
+}
+
+ul{
+    list-style: none;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color:  rgb(34, 34, 34);
+    list-style-type: none;
+    padding: 10px 0;
+    margin: 0;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+}
+
+.submenu li {
+    margin: 0;
+}
+
+.submenu li a {
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.submenu li a:hover {
+    background-color: rgb(33, 150, 243);
+}
+
+.nav-item:hover .submenu {
+    display: block;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+
+
+/* FOOTER */
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+   
+    font-weight: lighter;
+}
+
+footer li {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    font-weight: lighter;
+    padding: 5px;
+    font-size: 12px;
+}
+
+footer h2{
+    text-decoration: none;
+    color: inherit;
+    font-weight: lighter;
+    font-size: 18px;
+
+}
+.footer-container{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(87, 87, 87);
+    
+    
+    color: white;
+    
+}
+
+.footer-list{
+    padding: 20px;
+    
+}
+
+.footer-list li a {
+   
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.footer-list li :hover{
+    
+    color: rgb(33, 150, 243);
+} 
+
+
+@media (max-width: 768px) {
+    .logo-header {
+        display: none; 
+        
+    }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 0; 
+        left: 100%; 
+        background-color: rgb(34, 34, 34);
+        list-style-type: none;
+        padding: 10px 0;
+        margin: 0;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+        opacity: 0;
+        transform: translateX(-20px); 
+        
+    }
+    
+    .nav-item:hover .submenu {
+        display: block;
+        opacity: 1;
+        transform: translateX(0); 
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: rgb(34, 34, 34);
+        flex-direction: column;
+        align-items: start;
+        
+        width: 100%;
+        height: 100vh;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 10px ;
+        display: none; 
+    }
+    
+    
+    .hamburger {
+        display: flex;
+    }
+
+   
+    .nav-list.active {
+        display: flex;
+    }
+
+    #hide-list{
+        display: none;
+    }
+    
+}
+
+@media (max-width: 1024px) {
+    
+}
+
+
+
+
+
+
+
+
+
+
+

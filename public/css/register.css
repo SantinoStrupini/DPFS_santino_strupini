@@ -1,0 +1,164 @@
+.register-container{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    
+    
+}
+
+.img-register{
+    
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+.container-form{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 200px;
+    
+}
+
+
+
+.register-form{
+
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.logo-register{
+    margin-top: 50px;
+    margin-right: 80px;
+    margin-bottom: 20px;
+    width: 150px;
+}
+
+.register-list{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    margin-right: 50px;
+    
+}
+
+.register-button{
+    
+    color: white;
+    background-color: rgb(69, 69, 69);
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgb(95, 94, 94);
+    
+    
+}
+
+.register-button:hover{
+    color: white;
+    background-color: rgb(10, 101, 176);
+    width: 101%;
+    cursor: pointer;
+    
+}
+
+
+
+.register-list a{
+    text-decoration: none;
+    color: inherit;
+    font-size: 25px;
+    padding: 8px;
+}
+
+.register-input{
+    width: 300px;
+    margin-top: 6px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.create-button{
+    
+    color: white;
+    background-color: rgb(69, 69, 69);
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgb(95, 94, 94);
+}
+
+.create-button:hover{
+    color: white;
+    background-color: rgb(10, 101, 176);
+    width: 101%;
+    cursor: pointer;
+    
+}
+
+@media (max-width: 1024px) {
+    .img-register{
+        display: none;
+   }
+
+   .register-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+   .register-button{
+    
+       color: white;
+       background-color: rgb(69, 69, 69);
+       border: 1px solid black;
+       border-radius: 15px;
+       box-shadow: 0 2px 4px rgb(95, 94, 94);
+       margin: 5px;
+       
+   }
+   
+   .register-button:hover{
+       color: white;
+       background-color: rgb(10, 101, 176);
+       width: 101%;
+       cursor: pointer;
+       
+   }
+}
+
+@media (max-width: 768px) {
+    .img-register{
+         display: none;
+    }
+
+    .register-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+    .register-button{
+    
+        color: white;
+        background-color: rgb(69, 69, 69);
+        border: 1px solid black;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgb(95, 94, 94);
+        margin: 5px;
+        
+    }
+    
+    .register-button:hover{
+        color: white;
+        background-color: rgb(10, 101, 176);
+        width: 101%;
+        cursor: pointer;
+        
+    }
+    
+}
+

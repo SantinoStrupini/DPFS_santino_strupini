@@ -12,6 +12,14 @@ Nos enfocamos en proporcionar productos de **primer nivel**, concebidos para sat
 
 Este ecommerce surge de mi pasión por la música y el deseo de concretar un proyecto que no solo me apasione, sino que también satisfaga las expectativas de los músicos más exigentes.
 
+## Referencias
+
+https://www.famusic.com.ar/
+https://www.gymshark.com/es-US
+https://www.hoffmannmusica.com.ar/
+https://kemuelmusica.com/
+
+
 
 
 

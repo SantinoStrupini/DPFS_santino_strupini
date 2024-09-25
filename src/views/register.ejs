@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="../../public/css/style.css">
-    <link rel="stylesheet" href="../../public/css/register.css">
-</head>
-
-<body>
+<%- include('./partials/head', { title: 'Home - Register', styles: ['register'] }) %>
     
     <main>
 
         <div class="register-container">
-            <img class="img-register" src="../../public/img/img-register.jpg" alt="">
+            <img class="img-register" src="/img/img-register.jpg" alt="">
             <div class="container-form">
-                <a href="../views/index.html"><img class="logo-register" src="../../public/img/logo-register.jpeg" alt="log"></a>
+                <a href="/"><img class="logo-register" src="/img/logo-register.jpeg" alt="log"></a>
                 <ul class="register-list">
                     <li class="nav-item"><button class="register-button"><a href="#">Signup</a></button></li>
-                    <li class="nav-item"><button class="register-button"><a href="./login.html">Login</a></button></li>
+                    <li class="nav-item"><button class="register-button"><a href="/user/login">Login</a></button></li>
                 </ul>
 
                 <form action="" class="register-form">

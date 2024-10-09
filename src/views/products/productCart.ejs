@@ -1,5 +1,5 @@
-<%- include('./partials/head', { title: 'Home - Cart', styles: ['productCart'] }) %>
-    <%- include('./partials/header')%>
+<%- include('../partials/head', { title: 'Home - Cart', styles: ['productCart'] }) %>
+    <%- include('../partials/header')%>
     <main>
         <!-- <div class="container-cart">
             <img class="img-cart" src="../img/fender-stratocaster.png" alt="">
@@ -17,16 +17,16 @@
             <div class="container-empty-cart">
                 <h1 class="empty-cart-title">Your cart is empty</h2>
                 <h2>Please select a product</h2>
-                <a class="empty-cart-link" href="/products/guitarsDetail">Guitarras</a>
-                <a class="empty-cart-link" href="/products/drumsDetail">Baterías</a>
-                <a class="empty-cart-link" href="/products/bassDetail">Bajos</a>
+                <a class="empty-cart-link" href="/products?category=guitars">Guitarras</a>
+                <a class="empty-cart-link" href="/products?category=drum">Baterías</a>
+                <a class="empty-cart-link" href="/products?category=bass">Bajos</a>
                 
             </div>
           </div>
         
         
     </main>
-    <%- include('./partials/footer')%>
+    <%- include('../partials/footer')%>
     <script src="/js/menu.js"></script>
 </body>
 </html>

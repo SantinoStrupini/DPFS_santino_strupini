@@ -1,0 +1,26 @@
+<%- include('../partials/head', { title: 'Home - Products', styles: ['productDetail'] }) %>
+    <%- include('../partials/header')%>
+    <main>
+        <h1>Productos: <%= products[0].category %></h1>
+        <div class="container">
+            
+            <% locals.products?.forEach(function(product) { %>
+                <div class="card-container" id=<%= product.id %>>
+                    <img class="img-card" src=<%= product.img %> alt="">
+    
+                        <h2 class="card-price">$<%= product.price %></h2>
+                        <h3 class="card-name"><%= product.name %></h3>
+
+                        <p class="card-description"><%= product.description %></p>
+                        <button class="card-button" idProduct=<%= product.id %> >Add to cart</button>                    
+                </div>
+                
+            <% }) %>
+            
+        </div>    
+    </main>
+    <%- include('../partials/footer')%>
+    <script src="/js/menu.js"></script>
+</body>
+
+</html>

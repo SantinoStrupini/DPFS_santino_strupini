@@ -1,0 +1,30 @@
+<%- include('../partials/head', { title: 'Edit Product', styles: ['register', 'style', 'productCart'] }) %>
+<%- include('../partials/header')%>
+
+<div class="content">
+    <div class="container-empty-cart">
+        <form action="/products/<%= product.id %>/editProduct" method="POST" class="register-form">
+            <label for="name">Product Name</label>
+            <input class="register-input" type="text" name="name" placeholder="Enter product name" value="<%= product.name %>">
+
+            <label for="price">Product Price</label>
+            <input class="register-input" type="text" name="price" placeholder="Enter product price" value="<%= product.price %>">
+
+            <label for="description">Product Description</label>
+            <input class="register-input" type="text" name="description" placeholder="Enter product description" value="<%= product.description %>">
+
+            <label for="img">Product Img</label>
+            <input class="register-input" type="text" name="img" placeholder="Enter product image URL" value="<%= product.img %>">
+
+            <label for="category">Product Category</label>
+            <input class="register-input" type="text" name="category" placeholder="Enter product category" value="<%= product.category %>">
+            
+            <button class="create-button">Edit product</button>
+        </form>
+    </div>
+</div>
+
+<%- include('../partials/footer')%>
+<script src="/js/menu.js"></script>
+</body>
+</html>

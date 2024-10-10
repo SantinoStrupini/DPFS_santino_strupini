@@ -90,7 +90,7 @@
   {
     "id": 12,
     "name": "Ibanez GSR200",
-    "price": 1000000,
+    "price": "1000000",
     "description": "Un bajo asequible con gran rendimiento, ideal para principiantes y músicos intermedios.",
     "img": "/img/bajo-ibanez-gsr200.png",
     "category": "bass"
@@ -189,6 +189,14 @@
     "price": 1000000,
     "description": "Batería clásica utilizada por legendarios músicos de rock.",
     "img": "/img/bateria-ludwig.png",
+    "category": "drum"
+  },
+  {
+    "id": 25,
+    "name": "sax",
+    "price": "11111",
+    "description": "asasasa",
+    "img": "/img/bateria-sonor.png",
     "category": "drum"
   }
 ]

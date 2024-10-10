@@ -60,17 +60,23 @@ function put(id, product){
     const data = fs.readFileSync(filePath, 'utf-8');//aca lee el archivo json que le indique
     const parseData = JSON.parse(data);//parsea el JSON a js
     //usar un find para buscar el producto especificio que tengo que editar
- 
+    const productIndex = parseData.findIndex(p => parseInt(p.id) === parseInt(id));
     //con la info de product modifico la info
-    
+    parseData[productIndex] = {
+        ...parseData[productIndex], // Mantiene las propiedades actuales del producto
+        ...product// Reemplaza con las nuevas propiedades
+    };
     //reescribo el archivo como hice para crear 
     fs.writeFileSync(filePath, JSON.stringify(parseData, null, 2));
+    return 'Producto actualizado'; // Devuelve una confirmación
 }
 
 function deleteProduct(id){
     const data = fs.readFileSync(filePath, 'utf-8');//aca lee el archivo json que le indique
-        const parseData = JSON.parse(data);//parsea el JSON a js
-    //lees todos los productos y eliminas el producto especifico con el id y reescribis el archivo.
+    const parseData = JSON.parse(data);//parsea el JSON a js
+    const updatedData = parseData.filter(p => parseInt(p.id) !== parseInt(id))
+
+    fs.writeFileSync(filePath, JSON.stringify(updatedData, null, 2));
 }
 const Product = {
     findAll: (category) => {
@@ -81,7 +87,13 @@ const Product = {
     },
     create: (product)=>{
         return create(product);
-    } 
+    },
+    put: (id, product) =>{
+        return put(id, product);
+    },
+    delete: (id)=>{
+        return deleteProduct(id);
+    }
 };
 
 

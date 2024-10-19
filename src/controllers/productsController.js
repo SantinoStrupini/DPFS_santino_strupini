@@ -6,10 +6,28 @@ const productsController = {
         
         res.render('products/productCart');
     },
-     showCreateForm: (req, res) => {
+    getAll: async (req, res) =>{
+        const { category } = req.query;
+        const products = await Product.findAll(category);
+        res.render('products/productDetail', { products }); 
+        
+       
+    },
+    getById: async (req, res) => {
+        const { id } = req.params;
+        const product = await Product.findById(id);
+        
+        if (product) {
+            res.render('products/category', { products: [product] }); 
+        }
+        return res.render('products/category', { products: [] }); 
+        
+    },
+    
+    showCreateForm: (req, res) => {
         
         res.render('products/createProduct'); 
-    }, 
+    },
    create: async(req, res) =>{
         const product = req.body;
        
@@ -19,45 +37,45 @@ const productsController = {
         res.redirect('/products');
     }, 
     showEditForm: async(req, res)=>{
-        const id = req.params.id; // Captura el ID desde la URL
-        const product = await Product.findById(id); // Busca el producto por ID usando el modelo
+        const id = req.params.id;
+        const product = await Product.findById(id); 
 
         if (!product) {
             return res.status(404).send('Producto no encontrado');
         }
 
-        // Renderiza la vista pasando el producto encontrado
+        
         res.render('products/editProduct', { product });
     },
     edit: async(req, res) =>{
-        const id = req.params.id; // Captura el ID del producto desde los parámetros de la URL
-        const product = req.body; // Obtiene los datos actualizados desde el cuerpo de la solicitud
-        const response = await Product.put(id, product); // Llama al método update del modelo
+        const id = req.params.id; 
+        const product = req.body; 
+        const response = await Product.put(id, product); 
         if (response === 'Producto no encontrado') {
-            return res.status(404).json({ message: response }); // Si no encuentra el producto, responde con 404
+            return res.status(404).json({ message: response });
         }
-        res.redirect('/products'); // Responde con un mensaje de éxito
+        res.redirect('/products');
           
     },
-    getAll: async (req, res) =>{
-        const { category } = req.query;
-        const products = await Product.findAll(category);
-        res.render('products/productDetail', { products }); 
-        
-       
-    },
-   /*  getById: async(req, res) =>{
-        const { id } = req.params;  
-        const product = await Product.findById(id);  
-        res.render('products/category', { product });
-    },   */
-    delete: (req,res) =>{
-        const id = req.params.id; // Obtener el ID desde los parámetros de la URL
-        const response = Product.delete(id); // Llamar al modelo para eliminar el producto
-        if (response === 'Producto no encontrado') {
-            return res.status(404).json({ message: response }); // Enviar error si el producto no existe
+    showDeleteForm: async(req, res)=>{
+        const id = req.params.id;
+        const product = await Product.findById(id); 
+
+        if (!product) {
+            return res.status(404).send('Producto no encontrado');
         }
-        res.json({ message: response }); // Enviar un mensaje de éxito
+
+        
+        res.render('products/deleteProduct', { product });
+    },
+    delete: (req,res) =>{
+        const id = req.params.id; 
+        const product = req.body;
+        const response = Product.delete(id); 
+        if (response === 'Producto no encontrado') {
+            return res.status(404).json({ message: response }); 
+        }
+        res.redirect('/products');
     }
      
 }

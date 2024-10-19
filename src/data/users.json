@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "nombre": "Santino",
+      "apellido": "Strupini",
+      "email": "santino@example.com",
+      "password": "password123",
+      "category": "admin"
+    },
+    {
+      "id": 2,
+      "nombre": "Ignacio",
+      "apellido": "Braunstein",
+      "email": "ignacio@example.com",
+      "password": "password456",
+      "category": "user"
+    }
+  ]
+  

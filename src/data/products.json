@@ -190,13 +190,5 @@
     "description": "Batería clásica utilizada por legendarios músicos de rock.",
     "img": "/img/bateria-ludwig.png",
     "category": "drum"
-  },
-  {
-    "id": 25,
-    "name": "sax",
-    "price": "11111",
-    "description": "asasasa",
-    "img": "/img/bateria-sonor.png",
-    "category": "drum"
   }
 ]

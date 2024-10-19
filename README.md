@@ -20,6 +20,10 @@ https://www.hoffmannmusica.com.ar/
 https://kemuelmusica.com/
 
 
+## Tablero de trello
+
+https://trello.com/invite/b/6710fa031e326eeaf4cc62c4/ATTI8670a8c1e49d58295813f210f8ceb4b541F4606F/proyecto-digital-house
+
 
 
 

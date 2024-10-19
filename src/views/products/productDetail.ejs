@@ -11,7 +11,9 @@
                         <h3 class="card-name"><%= product.name %></h3>
 
                         <p class="card-description"><%= product.description %></p>
-                        <button class="card-button" idProduct=<%= product.id %> >Add to cart</button>                    
+                        <button class="card-button" idProduct=<%= product.id %> >Add to cart</button>  
+                        <a href="/products/category/<%= product.id %>"><button class="card-button" idProduct=<%= product.id %> >See detail</button></a>
+                                     
                 </div>
                 
             <% }) %>

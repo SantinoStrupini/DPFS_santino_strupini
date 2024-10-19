@@ -1,23 +1,18 @@
 <%- include('../partials/head', { title: 'Home - Products', styles: ['productDetail'] }) %>
     <%- include('../partials/header')%>
     <main>
-        <h1>Productos: <%= products[0].category %></h1>
-        <div class="container">
-            
-            <% locals.products?.forEach(function(product) { %>
-                <div class="card-container" id=<%= product.id %>>
-                    <img class="img-card" src=<%= product.img %> alt="">
-    
-                        <h2 class="card-price">$<%= product.price %></h2>
-                        <h3 class="card-name"><%= product.name %></h3>
-
-                        <p class="card-description"><%= product.description %></p>
-                        <button class="card-button" idProduct=<%= product.id %> >Add to cart</button>                    
-                </div>
-                
-            <% }) %>
-            
-        </div>    
+        <% if (products && products.length > 0) { %>
+            <h1>Producto: <%= products[0].category %></h1>
+            <div class="card-container" id="<%= products[0].id %>">
+              <img class="img-card" src="<%= products[0].img %>" alt="">
+              <h2 class="card-price">$<%= products[0].price %></h2>
+              <h3 class="card-name"><%= products[0].name %></h3>
+              <p class="card-description"><%= products[0].description %></p>
+              <button class="card-button" idProduct="<%= products[0].id %>">Add to cart</button>
+            </div>
+          <% } else { %>
+            <h1>Producto no existente</h1>
+          <% } %>
     </main>
     <%- include('../partials/footer')%>
     <script src="/js/menu.js"></script>

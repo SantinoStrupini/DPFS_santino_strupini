@@ -8,8 +8,8 @@ const filePath = path.join(__dirname, '../data/products.json');
 
 function getData(category) {
     try{
-        const data = fs.readFileSync(filePath, 'utf-8');//aca lee el archivo json que le indique
-        const parseData = JSON.parse(data);//parsea el JSON a js
+        const data = fs.readFileSync(filePath, 'utf-8');
+        const parseData = JSON.parse(data);
         if(!category){
             return parseData;   
         }
@@ -23,8 +23,8 @@ function getData(category) {
 
 function getById(id) {
     try{
-        const data = fs.readFileSync(filePath, 'utf-8');//aca lee el archivo json que le indique
-        const parseData = JSON.parse(data);//parsea el JSON a js
+        const data = fs.readFileSync(filePath, 'utf-8');
+        const parseData = JSON.parse(data);
         if(!id){
             return parseData;   
         }
@@ -39,15 +39,15 @@ function getById(id) {
 
 function create(product) {
     try {  
-        const data = fs.readFileSync(filePath, 'utf-8');//aca lee el archivo json que le indique
-        const parseData = JSON.parse(data);//parsea el JSON a js
-        const newId = parseData[parseData.length - 1].id + 1;//traigo el id del ultimo elemento
+        const data = fs.readFileSync(filePath, 'utf-8');
+        const parseData = JSON.parse(data);
+        const newId = parseData[parseData.length - 1].id + 1;
         parseData.push({
             id: newId,
             ...product
             
         });
-        fs.writeFileSync(filePath, JSON.stringify(parseData, null, 2));//esta linea agarra el array nuevo y escribe todo devuelta con el producto nuevo
+        fs.writeFileSync(filePath, JSON.stringify(parseData, null, 2));
         return 'producto creado';
     } catch (error) {
         console.log(error);
@@ -57,27 +57,39 @@ function create(product) {
 }
 
 function put(id, product){
-    const data = fs.readFileSync(filePath, 'utf-8');//aca lee el archivo json que le indique
-    const parseData = JSON.parse(data);//parsea el JSON a js
-    //usar un find para buscar el producto especificio que tengo que editar
+    try {
+        const data = fs.readFileSync(filePath, 'utf-8');
+    const parseData = JSON.parse(data);
     const productIndex = parseData.findIndex(p => parseInt(p.id) === parseInt(id));
-    //con la info de product modifico la info
     parseData[productIndex] = {
-        ...parseData[productIndex], // Mantiene las propiedades actuales del producto
-        ...product// Reemplaza con las nuevas propiedades
+        ...parseData[productIndex], 
+        ...product
     };
-    //reescribo el archivo como hice para crear 
+    
     fs.writeFileSync(filePath, JSON.stringify(parseData, null, 2));
-    return 'Producto actualizado'; // Devuelve una confirmación
+    return 'Producto actualizado'; 
+    } catch (error) {
+     console.log(error);
+        
+    }
+    
 }
 
 function deleteProduct(id){
-    const data = fs.readFileSync(filePath, 'utf-8');//aca lee el archivo json que le indique
-    const parseData = JSON.parse(data);//parsea el JSON a js
-    const updatedData = parseData.filter(p => parseInt(p.id) !== parseInt(id))
+    try {
+        const data = fs.readFileSync(filePath, 'utf-8');
+        const parseData = JSON.parse(data);
+        const updatedData = parseData.filter(p => parseInt(p.id) !== parseInt(id))
 
-    fs.writeFileSync(filePath, JSON.stringify(updatedData, null, 2));
+        fs.writeFileSync(filePath, JSON.stringify(updatedData, null, 2));
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
 }
+
+
 const Product = {
     findAll: (category) => {
         return getData(category);

@@ -1,19 +1,14 @@
 [
     {
-      "id": 1,
-      "nombre": "Santino",
-      "apellido": "Strupini",
-      "email": "santino@example.com",
-      "password": "password123",
-      "category": "admin"
+        "id": 1,
+        "userName": "Mica",
+        "email": "Mica@mail.com",
+        "password": "$2a$10$IDniNJvohk8DBxzp4UkmE.rnQaXwXvuS2PP4XNpzDO0qhnd5bYRlG"
     },
     {
-      "id": 2,
-      "nombre": "Ignacio",
-      "apellido": "Braunstein",
-      "email": "ignacio@example.com",
-      "password": "password456",
-      "category": "user"
+        "id": 2,
+        "userName": "Agustin",
+        "email": "agustin@mail.com",
+        "password": "$2a$10$zccmiZ/xl5vocQ13Yput2uDVqmVoQk3bqwIwBicz.DmtUeNw4b1Ku"
     }
-  ]
-  
+]

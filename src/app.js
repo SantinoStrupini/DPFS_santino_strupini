@@ -8,7 +8,7 @@ const mainRouter = require('./routes/main');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/user');
 const userApiRouter = require('./routes/api/userApi');
-
+const productsApiRouter = require('./routes/api/productsApi');
 
 const app = express();
 
@@ -26,6 +26,7 @@ app.use('/', mainRouter);
 app.use('/products', productsRouter);
 app.use('/user', userRouter);
 app.use('/userApi', userApiRouter);
+app.use('/productsApi', productsApiRouter)
 
 
 const port = process.env.PORT || 3000;

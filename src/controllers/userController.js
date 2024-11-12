@@ -43,7 +43,7 @@ const userController = {
                 
                 return res.status(401).json({ message: 'Incorrect password' });
             }
-            console.log("JWT Secret:", process.env.JWT_SECRET);
+            
             
             const token = jwt.encode(
                 { name: userExists.userName, email: userExists.email },

@@ -1,54 +1,95 @@
-const Product = require('../../models/products')
+const { Product, ProductCategory } = require('../../database/models');
 
-const productsApiController = {
-   
-    getAll: async (req, res) =>{
-        const { category } = req.query;
-        const products = await Product.findAll(category);
-        res.json('products/productDetail', { products }); 
-        
-       
+const productsController = {
+    getAll: async (req, res) => {
+        try {
+            const products = await Product.findAll({
+                include: [
+                    {
+                        model: ProductCategory,
+                        as: 'category'
+                    }
+                ]
+            });
+
+            res.status(200).json(products);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error al obtener los productos', error });
+        }
     },
+
     getById: async (req, res) => {
         const { id } = req.params;
-        const product = await Product.findById(id);
-        
-        if (product) {
-            res.json('products/category', { products: [product] }); 
-        }
-        return res.json('products/category', { products: [] }); 
-        
-    },
-   create: async(req, res) =>{
-        const product = req.body;
-       
-        
-        const createProduct = await Product.create(product);
-       
-        res.status(201).json({
-            message: 'product created'
-        })
-    }, 
-    edit: async(req, res) =>{
-        const id = req.params.id; 
-        const product = req.body; 
-        const response = await Product.put(id, product); 
-        if (response === 'Producto no encontrado') {
-            return res.status(404).json({ message: response });
-        }
-        res.status(202).json({ message: 'Product updated' });
-          
-    },
-    delete: (req,res) =>{
-        const id = req.params.id; 
-        const product = req.body;
-        const response = Product.delete(id); 
-        if (response === 'Producto no encontrado') {
-            return res.status(404).json({ message: response }); 
-        }
-        res.status(202).json({ message: 'Product deleted' });
-    }
-     
-}
 
-module.exports = productsApiController;
+        try {
+            const product = await Product.findByPk(id, {
+                include: [
+                    {
+                        model: ProductCategory,
+                        as: 'category'
+                    }
+                ]
+            });
+
+            if (!product) {
+                return res.status(404).json({ message: 'Producto no encontrado' });
+            }
+
+            res.status(200).json(product);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error al obtener el producto', error });
+        }
+    },
+
+    create: async (req, res) => {
+        const productData = req.body;
+
+        try {
+            const newProduct = await Product.create(productData);
+            res.status(201).json(newProduct);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error al crear el producto', error });
+        }
+    },
+
+    edit: async (req, res) => {
+        const { id } = req.params;
+        const productData = req.body;
+
+        try {
+            const [updated] = await Product.update(productData, { where: { id } });
+
+            if (!updated) {
+                return res.status(404).json({ message: 'Producto no encontrado' });
+            }
+
+            const updatedProduct = await Product.findByPk(id);
+            res.status(200).json(updatedProduct);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error al actualizar el producto', error });
+        }
+    },
+
+    delete: async (req, res) => {
+        const { id } = req.params;
+
+        try {
+            const deleted = await Product.destroy({ where: { id } });
+
+            if (!deleted) {
+                return res.status(404).json({ message: 'Producto no encontrado' });
+            }
+
+            res.status(204).send(); // No content
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error al eliminar el producto', error });
+        }
+    }
+};
+
+module.exports = productsController;

@@ -7,21 +7,35 @@ const productsController = {
 
     getAll: async (req, res) => {
         try {
-            const products = await Product.findAll({
+            const { category } = req.query; 
+    
+            
+            const product = {
                 include: [
                     {
                         model: ProductCategory,
-                        as: 'category' 
+                        as: 'category'
                     }
                 ]
-            });
-
+            };
+    
+            
+            if (category) {
+                product.where = {
+                    '$category.name$': category 
+                };
+            }
+    
+            
+            const products = await Product.findAll(product);
+    
             res.render('products/productDetail', { products });
         } catch (error) {
             console.error(error);
             res.status(500).send('Error al mostrar los productos');
         }
     },
+    
 
     getById: async (req, res) => {
         const { id } = req.params;
@@ -51,10 +65,20 @@ const productsController = {
     },
 
     create: async (req, res) => {
-        const productData = req.body;
+        
+        const { name, price, description, img, category_id } = req.body;
 
+            // Crea un nuevo producto en la base de datos
+            
         try {
-            await Product.create(productData);
+            const newProduct = await Product.create({
+                name,
+                price,
+                description,
+                img,
+                category_id
+            });
+            
             res.redirect('/products');
         } catch (error) {
             console.error(error);

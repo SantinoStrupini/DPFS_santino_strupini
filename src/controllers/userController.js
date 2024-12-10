@@ -9,26 +9,33 @@ const userController = {
     },
     register: async (req, res) => {
         const { userName, email, password } = req.body;
-        const category = await db.Category.findOne({where: { userName: 'user'}})
         try {
-            const userExists = await User.findOne({ where: { email } });
+            
+            const category = await db.Category.findOne({ where: { userName: 'user' } });
+            
+            
+            if (!category) {
+                return res.status(400).json({ message: 'Category "user" not found' });
+            }
+    
+            
+            const userExists = await db.User.findOne({ where: { email } });
             if (userExists) {
-               
                 return res.status(400).json({ message: 'The user already exists' });
             }
+    
             const hashPassword = await bcrypt.hash(password, 10);
             const newUser = { 
                 userName, 
                 email, 
                 password: hashPassword, 
-                category_id: category.id
+                categories_id: category.id 
             };
+            
             await db.User.create(newUser);
-           
             res.redirect('/');
         } catch (error) {
             console.error(error);
-            
             res.status(500).json({ message: 'Error creating user', error });
         }
     },

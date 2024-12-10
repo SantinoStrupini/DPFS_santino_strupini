@@ -32,7 +32,7 @@ const productsController = {
             res.render('products/productDetail', { products });
         } catch (error) {
             console.error(error);
-            res.status(500).send('Error al mostrar los productos');
+            res.status(500).send('Error showing the products');
         }
     },
     
@@ -56,7 +56,7 @@ const productsController = {
             return res.render('products/category', { products: [] });
         } catch (error) {
             console.error(error);
-            res.status(500).send('Error al mostrar el producto');
+            res.status(500).send('Error showing the product');
         }
     },
 
@@ -68,7 +68,7 @@ const productsController = {
         
         const { name, price, description, img, category_id } = req.body;
 
-            // Crea un nuevo producto en la base de datos
+            
             
         try {
             const newProduct = await Product.create({
@@ -82,7 +82,7 @@ const productsController = {
             res.redirect('/products');
         } catch (error) {
             console.error(error);
-            res.status(500).send('Error al crear el producto');
+            res.status(500).send('Error creating the product');
         }
     },
 
@@ -93,13 +93,13 @@ const productsController = {
             const product = await Product.findByPk(id);
 
             if (!product) {
-                return res.status(404).send('Producto no encontrado');
+                return res.status(404).send('product not found');
             }
 
             res.render('products/editProduct', { product });
         } catch (error) {
             console.error(error);
-            res.status(500).send('Error al mostrar el producto');
+            res.status(500).send('Error showing the product');
         }
     },
 

@@ -33,13 +33,13 @@ const productsController = {
             });
 
             if (!product) {
-                return res.status(404).json({ message: 'Producto no encontrado' });
+                return res.status(404).json({ message: 'Producto not found' });
             }
 
             res.status(200).json(product);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error al obtener el producto', error });
+            res.status(500).json({ message: 'Error showing product', error });
         }
     },
 
@@ -51,7 +51,7 @@ const productsController = {
             res.status(201).json(newProduct);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error al crear el producto', error });
+            res.status(500).json({ message: 'Error creating product', error });
         }
     },
 
@@ -63,14 +63,14 @@ const productsController = {
             const [updated] = await Product.update(productData, { where: { id } });
 
             if (!updated) {
-                return res.status(404).json({ message: 'Producto no encontrado' });
+                return res.status(404).json({ message: 'Product not found' });
             }
 
             const updatedProduct = await Product.findByPk(id);
             res.status(200).json(updatedProduct);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error al actualizar el producto', error });
+            res.status(500).json({ message: 'Error updating product', error });
         }
     },
 
@@ -81,13 +81,13 @@ const productsController = {
             const deleted = await Product.destroy({ where: { id } });
 
             if (!deleted) {
-                return res.status(404).json({ message: 'Producto no encontrado' });
+                return res.status(404).json({ message: 'Product not found' });
             }
 
-            res.status(204).send(); // No content
+            res.status(204).send();
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error al eliminar el producto', error });
+            res.status(500).json({ message: 'Error deleting product', error });
         }
     }
 };

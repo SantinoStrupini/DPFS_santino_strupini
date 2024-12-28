@@ -2,7 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
-
+const cookieParser = require('cookie-parser');
+const authUser = require('./middlewares/authUser');
 
 const mainRouter = require('./routes/main');
 const productsRouter = require('./routes/products');
@@ -22,6 +23,8 @@ app.use(express.json());
 
 
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(authUser);
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
 app.use('/user', userRouter);

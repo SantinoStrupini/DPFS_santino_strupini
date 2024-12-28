@@ -1,8 +1,8 @@
-<%- include('../partials/head', { title: 'Home - Products', styles: ['productDetail'] }) %>
+<%- include('../partials/head', { title: 'Home - Products', styles: ['category'] }) %>
     <%- include('../partials/header')%>
     <main>
         <% if (products && products.length > 0) { %>
-            <h1>Producto: <%= products[0].category.name %></h1>
+            <h1>Product: <%= products[0].category.name %></h1>
             <div class="card-container" id="<%= products[0].id %>">
               <img class="img-card" src="<%= products[0].img %>" alt="">
               <h2 class="card-price">$<%= products[0].price %></h2>
@@ -11,7 +11,7 @@
               <button class="card-button" idProduct="<%= products[0].id %>">Add to cart</button>
             </div>
           <% } else { %>
-            <h1>Producto no existente</h1>
+            <h1>This product doesn't exist </h1>
           <% } %>
     </main>
     <%- include('../partials/footer')%>

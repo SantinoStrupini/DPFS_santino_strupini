@@ -2,11 +2,21 @@
 
     <%- include('./partials/header')%>
     <main>
+        <% if (user) { %>
+            <div class="user-info">
+                <h2>Welcome, <%= user.userName %>!</h2>
+               
+            </div>
+        <% } else { %>
+            <div class="guest-info">
+                <h2>Welcome to ST Instruments</h2>
+                <p>Please, <a href="/user/login">login</a> or <a href="/user/register">sign up</a>.</p>
+                
+            </div>
+        <% } %>
         <div class="slider-box">
             <ul>
-                <li>
-                    <img src="/img/logo-st.png" alt="">
-                </li>
+                
                 <li>
                     <img src="/img/img-home.jpg" alt="">
                 </li>
@@ -16,10 +26,13 @@
                 <li>
                     <img src="/img/img-home-drums.jpg" alt="">
                 </li>    
-                
+                <li>
+                    <img src="/img/img-home.jpg" alt="">
+                </li>
 
             </ul>
         </div>
+        
     </main>
     <%- include('./partials/footer')%>
     <script src="/js/menu.js"></script>

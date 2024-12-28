@@ -8,6 +8,7 @@ const userController = {
         res.render('user/register'); 
     },
     register: async (req, res) => {
+        
         const { userName, email, password } = req.body;
         try {
             
@@ -16,13 +17,12 @@ const userController = {
             
             if (!category) {
                 return res.status(400).json({ message: 'Category "user" not found' });
-            }
-    
+            } 
             
             const userExists = await db.User.findOne({ where: { email } });
             if (userExists) {
                 return res.status(400).json({ message: 'The user already exists' });
-            }
+            } 
     
             const hashPassword = await bcrypt.hash(password, 10);
             const newUser = { 
@@ -33,7 +33,14 @@ const userController = {
             };
             
             await db.User.create(newUser);
-            res.redirect('/');
+            const token = jwt.generateToken({ id: newUser.id, userName: newUser.userName, email: newUser.email });
+            
+    
+            console.log('Token generado:', token);
+            res.cookie('token', token, { httpOnly: true });
+            res.redirect('/'); 
+        
+        
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Error creating user', error });
@@ -55,8 +62,8 @@ const userController = {
             if (!isValidPassword) {
                 
                 return res.status(401).json({ message: 'Incorrect password or email' });
-            }
-            
+            } 
+           
             
             const token = jwt.encode(
                 { name: userExists.userName, email: userExists.email },

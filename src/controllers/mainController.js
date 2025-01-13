@@ -1,6 +1,6 @@
 const mainController = {
     index: (req, res) => {
-        const user = req.user || null; // Si no hay usuario autenticado, será null
+        const user = req.user || null; 
         res.render('index', { user });
     },
 

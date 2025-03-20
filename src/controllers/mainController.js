@@ -1,6 +1,7 @@
 const mainController = {
     index: (req, res) => {
-        res.render('index');
+        const user = req.user || null; 
+        res.render('index', { user });
     },
 
 }

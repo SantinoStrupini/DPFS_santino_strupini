@@ -9,6 +9,19 @@ function encode(payload) {
     return token;
 }
 
+
+function generateToken(payload, options = {}) {
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+        throw new Error('JWT_SECRET is not defined');
+    }
+
+    const defaultOptions = { expiresIn: '1h' };
+    const finalOptions = { ...defaultOptions, ...options };
+
+    return jwt.sign(payload, secret, finalOptions);
+}
+
 function verify(req) {
     if (req.headers && req.headers.authorization) {
         const parts = req.headers.authorization.split(' ');
@@ -32,6 +45,7 @@ function verify(req) {
 
 module.exports = {
     encode,
+    generateToken,
     verify
 };
 

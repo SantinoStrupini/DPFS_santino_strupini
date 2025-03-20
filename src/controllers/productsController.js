@@ -1,83 +1,159 @@
-const Product = require('../models/products')
+const { Product, ProductCategory } = require('../database/models'); 
 
 const productsController = {
-   
     productCart: (req, res) => {
-        
         res.render('products/productCart');
     },
-    getAll: async (req, res) =>{
-        const { category } = req.query;
-        const products = await Product.findAll(category);
-        res.render('products/productDetail', { products }); 
-        
-       
-    },
-    getById: async (req, res) => {
-        const { id } = req.params;
-        const product = await Product.findById(id);
-        
-        if (product) {
-            res.render('products/category', { products: [product] }); 
+
+    getAll: async (req, res) => {
+        try {
+            const { category } = req.query; 
+    
+            
+            const product = {
+                include: [
+                    {
+                        model: ProductCategory,
+                        as: 'category'
+                    }
+                ]
+            };
+    
+            
+            if (category) {
+                product.where = {
+                    '$category.name$': category 
+                };
+            }
+    
+            
+            const products = await Product.findAll(product);
+    
+            res.render('products/productDetail', { products });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error showing the products');
         }
-        return res.render('products/category', { products: [] }); 
-        
     },
     
+
+    getById: async (req, res) => {
+        const { id } = req.params;
+
+        try {
+            const product = await Product.findByPk(id, {
+                include: [
+                    {
+                        model: ProductCategory,
+                        as: 'category' 
+                    }
+                ]
+            });
+
+            if (product) {
+                return res.render('products/category', { products: [product] });
+            }
+            return res.render('products/category', { products: [] });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error showing the product');
+        }
+    },
+
     showCreateForm: (req, res) => {
-        
-        res.render('products/createProduct'); 
+        res.render('products/createProduct');
     },
-   create: async(req, res) =>{
-        const product = req.body;
-       
+
+    create: async (req, res) => {
         
-        const createProduct = await Product.create(product);
-       
-        res.redirect('/products');
-    }, 
-    showEditForm: async(req, res)=>{
-        const id = req.params.id;
-        const product = await Product.findById(id); 
+        const { name, price, description, img, category_id } = req.body;
 
-        if (!product) {
-            return res.status(404).send('Producto no encontrado');
+            
+            
+        try {
+            const newProduct = await Product.create({
+                name,
+                price,
+                description,
+                img,
+                category_id
+            });
+            
+            res.redirect('/products');
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error creating the product');
         }
-
-        
-        res.render('products/editProduct', { product });
     },
-    edit: async(req, res) =>{
-        const id = req.params.id; 
-        const product = req.body; 
-        const response = await Product.put(id, product); 
-        if (response === 'Producto no encontrado') {
-            return res.status(404).json({ message: response });
-        }
-        res.redirect('/products');
-          
-    },
-    showDeleteForm: async(req, res)=>{
-        const id = req.params.id;
-        const product = await Product.findById(id); 
 
-        if (!product) {
-            return res.status(404).send('Producto no encontrado');
-        }
+    showEditForm: async (req, res) => {
+        const { id } = req.params;
 
-        
-        res.render('products/deleteProduct', { product });
-    },
-    delete: (req,res) =>{
-        const id = req.params.id; 
-        const product = req.body;
-        const response = Product.delete(id); 
-        if (response === 'Producto no encontrado') {
-            return res.status(404).json({ message: response }); 
+        try {
+            const product = await Product.findByPk(id);
+
+            if (!product) {
+                return res.status(404).send('product not found');
+            }
+
+            res.render('products/editProduct', { product });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error showing the product');
         }
-        res.redirect('/products');
+    },
+
+    edit: async (req, res) => {
+        const { id } = req.params;
+        const productData = req.body;
+
+        try {
+            const [updated] = await Product.update(productData, { where: { id } });
+
+            if (!updated) {
+                return res.status(404).send('Producto no encontrado');
+            }
+
+            res.redirect('/products');
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error al actualizar el producto');
+        }
+    },
+
+    showDeleteForm: async (req, res) => {
+        const { id } = req.params;
+
+        try {
+            const product = await Product.findByPk(id);
+
+            if (!product) {
+                return res.status(404).send('Producto no encontrado');
+            }
+
+            res.render('products/deleteProduct', { product });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error al mostrar el producto');
+        }
+    },
+
+    delete: async (req, res) => {
+        const { id } = req.params;
+
+        try {
+            const deleted = await Product.destroy({ where: { id } });
+
+            if (!deleted) {
+                return res.status(404).send('Producto no encontrado');
+            }
+
+            res.redirect('/products');
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error al eliminar el producto');
+        }
     }
-     
-}
+};
 
 module.exports = productsController;

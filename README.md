@@ -11,6 +11,8 @@ Nos enfocamos en proporcionar productos de **primer nivel**, concebidos para sat
 ## Sobre mi
 
 Este ecommerce surge de mi pasión por la música y el deseo de concretar un proyecto que no solo me apasione, sino que también satisfaga las expectativas de los músicos más exigentes.
+## Dashboard
+https://github.com/SantinoStrupini/Dashboard_ST_Instruments
 
 ## Referencias
 
